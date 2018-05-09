@@ -1,41 +1,26 @@
 pipeline {
-  agent { 
-		//docker { image 'python:3.5.1' } 
-		label 'jnlp-slave'
-	}
-  
-  /*
-	environment {
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-    }
-	
-	parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
-    }
-	*/
-  
+  agent {
+    label 'jnlp-slave'
+  }
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
-        //sh 'python --version'
-				sh 'hostname'
-				sh 'pwd'
-				sh 'whoami'
-				sh 'ifconfig'
-				sh 'printenv'
-				//echo "${params.Greeting} World!"
+        sh 'hostname'
+        sh 'pwd'
+        sh 'whoami'
+        sh 'ifconfig'
+        sh 'printenv'
       }
     }
     stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
-            }
-        }
+      steps {
+        echo 'Testing'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying'
+      }
     }
   }
+}
