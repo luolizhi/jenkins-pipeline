@@ -11,8 +11,22 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        echo 'Testing'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing'
+          }
+        }
+        stage('Platform1') {
+          steps {
+            echo 'platform1'
+          }
+        }
+        stage('Platform2') {
+          steps {
+            echo 'platform2'
+          }
+        }
       }
     }
     stage('Deploy') {
